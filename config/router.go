@@ -2,18 +2,11 @@ package config
 
 import (
 	"github.com/ThreeDotsLabs/watermill"
-	"github.com/ThreeDotsLabs/watermill-amqp/pkg/amqp"
 	"github.com/ThreeDotsLabs/watermill/message"
 	"go-watermill-amqp/handlers"
 )
 
-var amqpSubscribers amqp.Subscriber
-
-func initSubscribers() {
-
-}
-
-func GetRouter() (*message.Router, error){
+func GetRouter() (*message.Router, error) {
 
 	logger := watermill.NewStdLogger(false, false)
 	router, err := message.NewRouter(message.RouterConfig{}, logger)
@@ -26,8 +19,8 @@ func GetRouter() (*message.Router, error){
 func ConfigureAMQPSubscriptionHandlers(r *message.Router, s message.Subscriber) {
 
 	r.AddNoPublisherHandler(
-		"OnLightMeasured",          // handler name, must be unique
-		"light/measured", // topic from which we will read events
+		"OnLightMeasured", // handler name, must be unique
+		"light/measured",  // topic from which we will read events
 		s,
 		handlers.OnLightMeasured, // topic to which we will publish events
 	)
