@@ -7,13 +7,7 @@ import (
 )
 
 func main() {
-
-
-
-	//this must be passed in or created by the app based on the bindings
-	var amqpURI = "amqp://guest:guest@localhost:5672/"
-
-	amqpSubscriber, err := config.GetAMQPSubscriber(amqpURI)
+	amqpSubscriber, err := config.GetAMQPSubscriber(config.GetAMQPURI())
 
 	if err != nil {
 		panic(err)
@@ -32,7 +26,3 @@ func main() {
 		panic(err)
 	}
 }
-
-
-
-
